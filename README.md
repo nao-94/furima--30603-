@@ -38,17 +38,11 @@
 -  belongs_to :user
 -  has_many   :images
 -  has_one    :purchases
+-  belongs_to_active_hash :category
+-  belongs_to_active_hash :condition
+-  belongs_to_active_hash :handing_time
+-  belongs_to_active_hash :postage_payer
 
-## images テーブル
-
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| image     | string     | null: false |
-| item      | references | null: false, foreign_key: true |
-
-### Association
-
--  belongs_to :item
 
 ## address テーブル
 
@@ -58,12 +52,14 @@
 | prefectures_id  | integer     | null: false, foreign_key: true |
 | city            | string      | null: false |
 | building_name   | string      |
+| house_number    | string      | null: false |
 | phone_number    | string      | null: false, uniqueness: true  |
 | purchase        | references  | null: false, foreign_key: true |
 
 ### Association
 
 -  belongs_to :purchase
+-  belongs_to_active_hash :prefecture
 
 ## purchases テーブル
 
