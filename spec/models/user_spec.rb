@@ -1,7 +1,6 @@
 require 'rails_helper'     # bundle exec rspec spec/models/user_spec.rbでターミナル実行
 
 RSpec.describe User, type: :model do
-
   describe 'ユーザー新規登録' do
     before do
       @user = FactoryBot.build(:user)
