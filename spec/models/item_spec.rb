@@ -68,13 +68,13 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが299以下だと登録できないこと' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors[:price]).to include('must be greater than or equal to 300')
       end
 
       it 'priceが10000000以上だと登録できないこと' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors[:price]).to include('must be less than or equal to 9999999')
       end
@@ -83,6 +83,36 @@ RSpec.describe Item, type: :model do
         @item.price = '５００'
         @item.valid?
         expect(@item.errors[:price]).to include('is not a number')
+      end
+
+      it 'category_idが「1」の場合だと登録できないこと' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors[:category_id]).to include('must be other than 1')
+      end
+
+      it 'condition_idが「1」の場合だと登録できないこと' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors[:condition_id]).to include('must be other than 1')
+      end
+
+      it 'postage_payer_idが「1」の場合だと登録できないこと' do
+        @item.postage_payer_id = 1
+        @item.valid?
+        expect(@item.errors[:postage_payer_id]).to include('must be other than 1')
+      end
+
+      it 'prefecture_idが「1」の場合だと登録できないこと' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors[:prefecture_id]).to include('must be other than 1')
+      end
+
+      it 'handing_time_idが「1」の場合だと登録できないこと' do
+        @item.handing_time_id = 1
+        @item.valid?
+        expect(@item.errors[:handing_time_id]).to include('must be other than 1')
       end
     end
   end
