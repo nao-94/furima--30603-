@@ -74,7 +74,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが10000000以上だと登録できないこと' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors[:price]).to include('must be less than or equal to 9999999')
       end
