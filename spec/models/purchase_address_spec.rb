@@ -38,6 +38,12 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)') 
       end
 
+      it 'prefectureが空の場合購入出来ないこと' do
+        @purchase_address.prefecture_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Prefecture can't be blank") 
+      end
+
       it 'prefectureが選択されていない場合購入出来ないこと' do
         @purchase_address.prefecture_id = 1
         @purchase_address.valid?
@@ -85,6 +91,7 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("User can't be blank")
       end
+
     end
   end
 end
