@@ -29,19 +29,19 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'postal_codeが半角ハイフンを含まない場合購入出来ないこと' do
         @purchase_address.postal_code = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it 'postal_codeが全角の場合購入出来ないこと' do
         @purchase_address.postal_code = '１２３４５６７'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")#"Postal code is invalid"
+        expect(@purchase_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)') 
       end
 
       it 'prefectureが選択されていない場合購入出来ないこと' do
         @purchase_address.prefecture_id = 1
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Prefecture can't be blank")#"Prefecture must be other than 1"
+        expect(@purchase_address.errors.full_messages).to include("Prefecture can't be blank") 
       end
 
       it 'cityが空の場合購入出来ないこと' do
@@ -59,13 +59,13 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'phone_numberにハイフンが含まれている場合購入出来ないこと' do
         @purchase_address.phone_number = '090-1234-5678'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid") #Include hyphen(-)
+        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid') 
       end
 
       it 'phone_numberが全角の場合購入出来ないこと' do
         @purchase_address.phone_number = '０９０１２３４５６７８'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'カード情報がtoken化されていない場合購入出来ないこと' do
@@ -86,6 +86,5 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("User can't be blank")
       end
     end
-
   end
 end
